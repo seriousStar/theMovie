@@ -7,7 +7,8 @@ import {styles} from './styles';
 import MovieItem from './components/MovieItem';
 import MovieListFooter from './components/MovieListFooter';
 import {CommonStyle} from '../../themes';
-import {getMostPopularMovies, getMostPopularLoadMore} from '../../redux/actions';
+import {ConfigureAPIs} from '../../services';
+import {getMostPopularMovies, getMostPopularLoadMore, getConfiguration} from '../../redux/actions';
 
 import {Indicator} from '../../components';
 
@@ -17,14 +18,20 @@ class HomeScreen extends Component {
   };
 
   componentDidMount() {
-    this.props.getMostPopularMovies();
+    this.onInitial();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
+    console.info('this.props', this.props);
     if (!_.isEqual(this.props.movies.popularMovies, prevProps.movies.popularMovies)) {
       this.setState({popularMovies: this.props.movies.popularMovies});
     }
   }
+
+  onInitial = async () => {
+    await this.props.getMostPopularMovies();
+    await this.props.getConfiguration();
+  };
 
   onPressMovieItem = data => {
     this.props.navigation.navigate({name: 'Details', params: {data}});
@@ -36,12 +43,20 @@ class HomeScreen extends Component {
   };
 
   renderMovieItem = ({item, index}) => {
-    return <MovieItem data={item} onPressItem={this.onPressMovieItem} />;
+    const {configuration} = this.props;
+    return (
+      <MovieItem
+        data={item}
+        onPressItem={this.onPressMovieItem}
+        genresConfig={configuration.genres}
+        imgConfig={configuration.images}
+      />
+    );
   };
 
   renderFooter = () => {
-    const {isFetching, activePage} = this.props;
-    return <MovieListFooter onLoadMore={this.onLoadMore} isLoading={isFetching && activePage !== 0} />;
+    const {isMovieFetching, activePage} = this.props;
+    return <MovieListFooter onLoadMore={this.onLoadMore} isLoading={isMovieFetching && activePage !== 0} />;
   };
 
   renderSeparator = () => {
@@ -50,11 +65,10 @@ class HomeScreen extends Component {
 
   render() {
     const {popularMovies} = this.state;
-    const {isFetching, activePage} = this.props;
-    console.info(activePage);
+    const {isMovieFetching, activePage, isConfigureFetching} = this.props;
     return (
       <SafeAreaView style={CommonStyle.container} edges={['right', 'bottom', 'left']}>
-        {!(isFetching && activePage === 0) && (
+        {!((isMovieFetching && activePage === 0) || isConfigureFetching) && (
           <FlatList
             data={popularMovies}
             keyExtractor={(item, index) => `key-${item.id}-${index}`}
@@ -63,7 +77,7 @@ class HomeScreen extends Component {
             ListFooterComponent={this.renderFooter}
           />
         )}
-        {isFetching && activePage === 0 && <Indicator />}
+        {((isMovieFetching && activePage === 0) || isConfigureFetching) && <Indicator />}
       </SafeAreaView>
     );
   }
@@ -71,8 +85,10 @@ class HomeScreen extends Component {
 
 const mapStateToProps = state => ({
   movies: state.movies,
+  configuration: state.configuration,
   activePage: state.movies.activePage,
-  isFetching: state.movies.isFetching || state.movies.isFetching,
+  isMovieFetching: state.movies.isFetching,
+  isConfigureFetching: state.configuration.isFetching,
 });
 
-export default connect(mapStateToProps, {getMostPopularMovies, getMostPopularLoadMore})(HomeScreen);
+export default connect(mapStateToProps, {getMostPopularMovies, getMostPopularLoadMore, getConfiguration})(HomeScreen);
