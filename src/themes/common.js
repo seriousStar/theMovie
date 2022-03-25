@@ -9,9 +9,12 @@ export default StyleSheet.create({
     paddingTop: Metrics.space.sm,
   },
   headerStyle: {
-    backgroundColor: Colors.background
+    backgroundColor: Colors.background,
   },
   headerTitleStyle: {
     color: Colors.primary,
+  },
+  rowContainer: {
+    flexDirection: 'row',
   },
 });

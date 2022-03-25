@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {Home, Details} from './screens';
-import {CommonStyle} from './themes';
+import {CommonStyle, Colors} from './themes';
 
 const MainStack = createNativeStackNavigator();
 
@@ -11,6 +11,8 @@ const options = {
   headerStyle: CommonStyle.headerStyle,
   headerTitleStyle: CommonStyle.headerTitleStyle,
   headerShadowVisible: false,
+  headerBackTitle: '',
+  headerTintColor: Colors.primary,
 };
 
 const Routing = () => {

@@ -9,7 +9,7 @@ class MovieItem extends Component {
     const {data, onPressItem} = this.props;
     return (
       <TouchableOpacity style={styles.itemContainer} onPress={() => onPressItem(data)}>
-        <Image source={{uri: `https://image.tmdb.org/t/p/w185${data.backdrop_path}`}} style={styles.itemImg} />
+        <Image source={{uri: `https://image.tmdb.org/t/p/w185${data.poster_path || data.backdrop_path}`}} style={styles.itemImg} />
         <View style={styles.itemSubContainer}>
           <Text style={styles.titleText} numberOfLines={1}>
             {data.title}

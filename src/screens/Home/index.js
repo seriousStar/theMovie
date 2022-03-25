@@ -17,8 +17,8 @@ class HomeScreen extends Component {
     this.setState({popularMovies: MOVIES.results});
   }
 
-  onPressMovieItem = movie => {
-    console.info('movie', movie);
+  onPressMovieItem = data => {
+    this.props.navigation.navigate({name: 'Details', params: {data}});
   };
 
   renderMovieItem = ({item, index}) => {
