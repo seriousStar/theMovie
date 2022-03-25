@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {StatusBar} from 'react-native';
+import {Provider} from 'react-redux';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Routing from './routing';
+import store from './redux/store';
 
 class App extends Component {
   constructor(props) {
@@ -12,7 +14,9 @@ class App extends Component {
   render() {
     return (
       <SafeAreaProvider>
-        <Routing />
+        <Provider store={store}>
+          <Routing />
+        </Provider>
       </SafeAreaProvider>
     );
   }

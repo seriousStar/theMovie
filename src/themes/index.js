@@ -1,6 +1,6 @@
-import Colors from './colors';
-import CommonStyle from './common';
-import Fonts from './fonts';
-import Metrics from './metrics';
+import Colors from './Colors';
+import CommonStyle from './Common';
+import Fonts from './Fonts';
+import Metrics from './Metrics';
 
 export {Colors, CommonStyle, Metrics, Fonts};
