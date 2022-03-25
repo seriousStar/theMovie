@@ -5,7 +5,7 @@ import {styles} from './styles';
 import {MOVIES} from './dummyData';
 import Config from '../../config';
 import {convertStrToDate} from '../../utils';
-import {MovieItem} from '../../components';
+import MovieItem from './components/MovieItem';
 import {CommonStyle} from '../../themes';
 
 class HomeScreen extends Component {

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {TouchableOpacity, Image, View, Text} from 'react-native';
 
 import {styles} from './styles';
-import {convertStrToDate} from '../../utils';
+import {convertStrToDate} from '../../../../utils';
 
 class MovieItem extends Component {
   render() {
