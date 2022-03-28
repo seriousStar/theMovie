@@ -40,3 +40,13 @@ npx react-native run-android
 ![Home](screenshots/Home.png)
 ### Detail
 ![Home](screenshots/Detail.png)
+
+## Third-party libraries
+
+- **@react-navigation/native**, **@react-navigation/native-stack** is to navigate to Home and Detail screens
+- **moment** is used to format the date of movie release date
+- **react-native-config** is used to store the Movie API_URL and API_KEY
+- **react-native-fast-image** is used to cache the movie thumbnail
+- **react-native-safe-area-context** dependency library of react-navigation
+- **react-native-screens** dependency library of react-navigation
+- **react-redux**, **redux**, **redux-thunk** are used to use redux state management
