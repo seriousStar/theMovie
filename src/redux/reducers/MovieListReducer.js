@@ -43,6 +43,12 @@ export default (state = INITIAL_STATE, action) => {
         isFetching: false,
         error: 'Failed to fetching more popular movies. Try again later!',
       };
+    case types.GET_POPULAR_MOVIES_MORE_FAILED_ERROR:
+      return {
+        ...state,
+        error: action.payload || 'Failed to fetching more popular movies. Try again later!',
+        isFetching: false,
+      };
     case types.GET_POPULAR_MOVIES_MORE_SUCCESS:
       return {
         ...state,

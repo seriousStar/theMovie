@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, FlatList, Image} from 'react-native';
+import {View, FlatList, Alert} from 'react-native';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -24,6 +24,8 @@ class HomeScreen extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (!_.isEqual(this.props.movies.popularMovies, prevProps.movies.popularMovies)) {
       this.setState({popularMovies: this.props.movies.popularMovies});
+    } else if (this.props.movies.error && this.props.movies.error !== prevProps.movies.error) {
+      Alert.alert('TheMovie', this.props.movies.error);
     }
   }
 

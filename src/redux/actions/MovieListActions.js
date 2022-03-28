@@ -15,7 +15,11 @@ export const getMostPopularLoadMore = pageIndex => async (dispatch, getState) =>
   dispatch({type: types.GET_POPULAR_MOVIES_MORE});
   const res = await MovieAPIs.getPopularMovies(pageIndex);
   if (res.error) {
-    dispatch({type: types.GET_POPULAR_MOVIES_MORE_FAILED});
+    if (res.errors) {
+      dispatch({type: types.GET_POPULAR_MOVIES_MORE_FAILED_ERROR, payload: res.errors[0]});
+    } else {
+      dispatch({type: types.GET_POPULAR_MOVIES_MORE_FAILED});
+    }
   } else {
     dispatch({type: types.GET_POPULAR_MOVIES_MORE_SUCCESS, payload: res});
   }

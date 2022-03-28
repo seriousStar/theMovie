@@ -15,9 +15,9 @@ export const apiModel = async (url, method) => {
     params = {headers, method};
     // eslint-disable-next-line
     const response = await fetch(queryURL, params);
-    ret = await response.json();
+    ret = (await response.json()) || {};
     if (response.status >= 400) {
-      ret = {error: true, success: false};
+      ret = {error: true, success: false, ...ret};
     }
     console.log('request result', queryURL, params, ret);
   } catch (err) {
