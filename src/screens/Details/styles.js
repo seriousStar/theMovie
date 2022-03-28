@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     color: Colors.primary,
     fontWeight: 'bold',
     fontSize: Fonts.size.h7,
-    marginBottom: Metrics.space.md,
+    marginBottom: Metrics.space.xs,
   },
   descriptionText: {
     color: Colors.secondary,
@@ -29,5 +29,8 @@ export const styles = StyleSheet.create({
   },
   descriptionContainer: {
     marginTop: Metrics.space.sm,
+  },
+  genresContainer: {
+    marginBottom: Metrics.space.sm,
   },
 });

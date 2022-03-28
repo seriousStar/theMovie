@@ -5,10 +5,10 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 
 import {styles} from './styles';
-import {CommonStyle} from '../../themes';
+import {Colors, CommonStyle} from '../../themes';
 import {convertStrToDate, getImageUrl} from '../../utils';
 import {getMovieDetail} from '../../redux/actions';
-import {Indicator} from '../../components';
+import {Indicator, Genres} from '../../components';
 
 class DetailsScreen extends Component {
   state = {
@@ -44,7 +44,8 @@ class DetailsScreen extends Component {
   render() {
     const {selectedMovie} = this.state;
     const {isFetching, configuration} = this.props;
-    console.info('configuration.images', configuration.images);
+    const genreNames = (selectedMovie?.genres || []).map(genre => genre.name);
+
     return (
       <SafeAreaView style={CommonStyle.container} edges={['right', 'bottom', 'left']}>
         {!isFetching && (
@@ -57,6 +58,9 @@ class DetailsScreen extends Component {
             />
             <View style={styles.mainContainer}>
               {!!selectedMovie.title && <Text style={styles.titleText}>{selectedMovie.title}</Text>}
+              {!!genreNames && (
+                <Genres names={genreNames} tagColor={Colors.blue.space} style={styles.genresContainer} />
+              )}
               {!!selectedMovie.overview && <Text style={styles.descriptionText}>{selectedMovie.overview}</Text>}
               {!!selectedMovie.popularity && (
                 <View style={[CommonStyle.rowContainer, styles.descriptionContainer]}>

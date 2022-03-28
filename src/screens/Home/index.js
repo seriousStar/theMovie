@@ -22,7 +22,6 @@ class HomeScreen extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    console.info('this.props', this.props);
     if (!_.isEqual(this.props.movies.popularMovies, prevProps.movies.popularMovies)) {
       this.setState({popularMovies: this.props.movies.popularMovies});
     }

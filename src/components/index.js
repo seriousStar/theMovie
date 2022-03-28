@@ -1,3 +1,4 @@
 import Indicator from './Indicator';
+import Genres from './Genres';
 
-export {Indicator};
+export {Indicator, Genres};

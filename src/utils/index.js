@@ -14,3 +14,15 @@ export const getImageUrl = (imgConfig, path, isLogo = true) => {
   }
   return `${baseUrl}${size}${path}`;
 };
+
+export const getGenreNames = (genresConfig, ids) => {
+  const result = [];
+  if (genresConfig) {
+    for (let index = 0; index < ids.length; index += 1) {
+      const filtered = genresConfig.filter(item => item.id === ids[index]);
+      result.push(filtered[0]);
+    }
+    return result.map(item => item?.name || '');
+  }
+  return result;
+};

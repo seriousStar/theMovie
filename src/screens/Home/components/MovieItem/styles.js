@@ -4,20 +4,21 @@ import {Colors, Metrics, Fonts} from '../../../../themes';
 export const styles = StyleSheet.create({
   itemContainer: {
     flexDirection: 'row',
-    height: 100,
+    minHeight: 110,
     alignItems: 'center',
     marginHorizontal: Metrics.space.sm,
     paddingHorizontal: Metrics.space.sm,
     backgroundColor: Colors.blue['space'],
     borderRadius: 5,
+    padding: 5,
   },
   itemSubContainer: {
     marginLeft: Metrics.space.sm,
     flex: 1,
   },
   itemImg: {
-    width: 85,
-    height: 85,
+    width: 110,
+    height: 120,
     resizeMode: 'cover',
     borderRadius: 5,
   },
@@ -25,11 +26,13 @@ export const styles = StyleSheet.create({
     fontSize: Fonts.size.regular,
     fontWeight: '600',
     color: Colors.primary,
-    marginBottom: Metrics.space.sm,
   },
   grayText: {
     color: Colors.secondary,
     fontWeight: '500',
     fontSize: Fonts.size.medium,
+  },
+  genresContainer: {
+    marginBottom: Metrics.space.sm,
   },
 });
