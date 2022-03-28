@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, Image, ScrollView, Linking} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {connect} from 'react-redux';
 import _ from 'lodash';
@@ -50,9 +51,10 @@ class DetailsScreen extends Component {
       <SafeAreaView style={CommonStyle.container} edges={['right', 'bottom', 'left']}>
         {!isFetching && (
           <ScrollView>
-            <Image
+            <FastImage
               source={{
                 uri: getImageUrl(configuration.images, selectedMovie.poster_path || selectedMovie.backdrop_path, false),
+                priority: FastImage.priority.high,
               }}
               style={styles.itemImg}
             />
